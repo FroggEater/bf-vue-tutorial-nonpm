@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+  <div id="vm1" v-on:click="increment">
+    {{ a }}
+  </div>
+
+  <script>
+    var data = { a: 1 };
+
+    var vm = new Vue({
+      el: '#vm1',
+      data: data,
+      methods: {
+        increment: () => vm.a += 1
+      },
+      created: () => console.log('vm had been created'),
+      updated: () => console.log(vm.a)
+    });
+
+    // Also provides $el and $data
+    // Allows change watching on defined data property
+    // Similar to the .updated handle
+    vm.$watch('a', (nv, ov) => alert(vm.a));
+  </script>
+</body>
